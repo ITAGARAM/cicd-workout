@@ -1,0 +1,1 @@
+package com.agaramtech.qualis.instrumentmanagement.service.instrumentlocation;

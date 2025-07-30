@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="LOG_PATTERN" value="yyyy-MM-dd' 'HH:mm:ss.SSS" />
+	<property name="APP_LOG_ROOT" value="${catalina.base}/logs/LIMSLog" />
+	<!--<property name="APP_LOG_ROOT" value="D:/LIMS21Log" />-->
+
+	<appender name="console"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+			<jsonFormatter
+				class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+				<prettyPrint>true</prettyPrint>
+			</jsonFormatter>
+			<timestampFormat>${LOG_PATTERN}</timestampFormat>
+		</layout>
+	</appender>
+
+	<appender name="applicationInfoLog" level="INFO"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${APP_LOG_ROOT}/application-info.log</file>
+
+		<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+			<jsonFormatter
+				class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+				<prettyPrint>true</prettyPrint>
+			</jsonFormatter>
+			<timestampFormat>${LOG_PATTERN}</timestampFormat>
+		</layout>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${APP_LOG_ROOT}/application-info-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>2MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>60MB</totalSizeCap>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="applicationErrorLog" level="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${APP_LOG_ROOT}/application-error.log</file>
+
+		<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+			<jsonFormatter
+				class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+				<prettyPrint>true</prettyPrint>
+			</jsonFormatter>
+			<timestampFormat>${LOG_PATTERN}</timestampFormat>
+		</layout>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${APP_LOG_ROOT}/application-error-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>2MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>60MB</totalSizeCap>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="applicationWarnLog" level="WARN"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${APP_LOG_ROOT}/application-warn.log</file>
+
+		<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+			<jsonFormatter
+				class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+				<prettyPrint>true</prettyPrint>
+			</jsonFormatter>
+			<timestampFormat>${LOG_PATTERN}</timestampFormat>
+		</layout>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${APP_LOG_ROOT}/application-warn-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>2MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>60MB</totalSizeCap>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+	
+	<appender name="applicationDebugLog" level="DEBUG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${APP_LOG_ROOT}/application-debug.log</file>
+
+		<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+			<jsonFormatter
+				class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+				<prettyPrint>true</prettyPrint>
+			</jsonFormatter>
+			<timestampFormat>${LOG_PATTERN}</timestampFormat>
+		</layout>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${APP_LOG_ROOT}/application-debug-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<maxFileSize>2MB</maxFileSize>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>60MB</totalSizeCap>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+		</rollingPolicy>
+	</appender>
+
+	<root name="limsLogger" level="INFO">
+		<appender-ref ref="console" />
+		<appender-ref ref="applicationInfoLog" />
+		<appender-ref ref="applicationErrorLog" />
+		<appender-ref ref="applicationWarnLog" />
+		<appender-ref ref="applicationDebugLog" /> 
+	</root>
+
+</configuration>
